@@ -3,7 +3,7 @@
     </x-slot>
         <div class="bg-white rounded-2xl p-6 shadow-sm">
             <div class="flex justify-between items-center mb-6">
-                <h3 class="text-lg font-semibold">Suggested Knowledge</h3>
+                <h3 class="text-lg font-semibold">Pengelolaan Kamar</h3>
                 <div class="flex space-x-2">
                     <a href="{{ route('kamar.create') }}">
                         <button class="p-2 hover:bg-gray-100 rounded-lg">

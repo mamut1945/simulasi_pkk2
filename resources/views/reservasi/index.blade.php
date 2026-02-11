@@ -9,7 +9,7 @@
             <div class="bg-white rounded-lg shadow-sm mb-4 overflow-hidden hover:shadow-md transition-shadow">
                 <div class="flex flex-col md:flex-row">
                     <div class="relative w-full md:w-48 h-48">
-                        <img src="https://source.unsplash.com/400x300/?hotel,room&sig={{ $kamar->id }}"
+                        <img src="https://picsum.photos/200/300?random={{ $kamar->id }}"
                              alt="Kamar {{ $kamar->no_kamar }}"
                              class="w-full h-full object-cover">
 
