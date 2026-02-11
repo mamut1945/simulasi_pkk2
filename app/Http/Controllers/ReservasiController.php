@@ -71,11 +71,24 @@ $total_bayar = $jumlah_hari * $kamar->harga;
                          ->with('success', 'Reservasi berhasil! Total bayar: Rp ' . number_format($total_bayar, 0, ',', '.'));
     }
 
-    public function riwayat()
-    {
-        $reservasis = Reservasi::with('kamar')->latest()->get();
-        return view('reservasi.riwayat', compact('reservasis'));
-    }
+public function riwayat(Request $request)
+{
+    $search = $request->query('search');
+
+    $reservasis = Reservasi::with('kamar') // supaya bisa akses kamar->no_kamar
+        ->when($search, function($query, $search) {
+            $query->where('nama_tamu', 'like', "%{$search}%")
+                  ->orWhereHas('kamar', function($q) use ($search) {
+                      $q->where('no_kamar', 'like', "%{$search}%")
+                        ->orWhere('tipe', 'like', "%{$search}%");
+                  });
+        })
+        ->orderBy('created_at', 'desc')
+        ->get();
+
+    return view('reservasi.riwayat', compact('reservasis', 'search'));
+}
+
     public function updateStatus(Request $request, Reservasi $reservasi)
 {
     $request->validate([

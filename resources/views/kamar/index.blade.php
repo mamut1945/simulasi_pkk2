@@ -13,6 +13,17 @@
                         </button>
                     </a>
                 </div>
+                
+                <div class="mb-4">
+    <form action="{{ route('kamar.index') }}" method="GET">
+        <input type="text" name="search" placeholder="Cari nomor kamar atau tipe..." 
+               value="{{ $search ?? '' }}" 
+               class="border rounded p-2 w-full md:w-1/3">
+        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 ml-2">
+            Cari
+        </button>
+    </form>
+</div>
             </div>
 
             <div class="overflow-x-auto">

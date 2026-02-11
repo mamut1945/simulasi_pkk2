@@ -7,10 +7,18 @@ use Illuminate\Http\Request;
 
 class KamarController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $kamars = Kamar::all();
-        return view('kamar.index', compact('kamars'));
+    $search = $request->query('search'); // ambil query search dari URL
+
+    $kamars = Kamar::query()
+        ->when($search, function($query, $search) {
+            $query->where('no_kamar', 'like', "%{$search}%")
+                  ->orWhere('tipe', 'like', "%{$search}%");
+        })
+        ->get();
+
+    return view('kamar.index', compact('kamars', 'search'));
     }
 
     public function create()
@@ -77,4 +85,5 @@ class KamarController extends Controller
         $kamar->delete();
         return redirect()->route('kamar.index')->with('success', 'Kamar berhasil dihapus!');
     }
+    
 }

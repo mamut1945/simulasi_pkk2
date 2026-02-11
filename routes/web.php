@@ -18,12 +18,15 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/kamar', [KamarController::class, 'index'])->name('kamar.index');
+
     Route::resource('kamar', KamarController::class);
     Route::get('riwayat-reservasi', 
         [ReservasiController::class, 'riwayat'])
         ->name('reservasi.riwayat');
     Route::patch('/reservasi/{reservasi}/status', [ReservasiController::class, 'updateStatus'])
      ->name('reservasi.updateStatus');
+     
 
 
 });
