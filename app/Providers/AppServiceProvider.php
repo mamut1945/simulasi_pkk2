@@ -9,6 +9,10 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Register any application services.
      */
+
+    public const HOME = '/redirect';
+
+
     public function register(): void
     {
         //
